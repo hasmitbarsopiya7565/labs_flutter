@@ -64,8 +64,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         DeviceOrientation.landscapeLeft,
       ]);
     }
-    WidgetsFlutterBinding.ensureInitialized()
-        .addPostFrameCallback((timeStamp) {});
     super.initState();
   }
 
@@ -114,6 +112,9 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Checkbox(
+                                        fillColor:
+                                            const MaterialStatePropertyAll(
+                                                AppColors.primaryColor),
                                         value: bloodThinnerList[index].value,
                                         onChanged: (value) {
                                           setState(() {
@@ -559,36 +560,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     height: 40,
                     width: 100,
                     onClick: () {
-                      // var data = {
-                      //   "params": {
-                      //     "case_id": caseId,
-                      //     "pre_procedure_data": {
-                      //       "blood_thinner": preProcedureDataLab?.bloodThinner,
-                      //       "blood_thinners_other":
-                      //           otherController.text.trim().toString(),
-                      //       "platelet_count": preProcedureDataLab?.plateletCount,
-                      //       "ptt_value": preProcedureDataLab?.pttValue,
-                      //       "creatinine": preProcedureDataLab?.creatinine,
-                      //       "dialysis": preProcedureDataLab?.dialysis,
-                      //       "history_nephrectomy":
-                      //           preProcedureDataLab?.historyNephrectomy,
-                      //       "wbc": preProcedureDataLab?.wbc,
-                      //       "results": preProcedureDataLab?.results,
-                      //       "inr": preProcedureDataLab?.inr,
-                      //       "pt": preProcedureDataLab?.pt,
-                      //       "bun": preProcedureDataLab?.bun,
-                      //       "gfr": preProcedureDataLab?.gfr,
-                      //       "renal_transplant":
-                      //           preProcedureDataHistory?.renalTransplant,
-                      //       "renal_status_approved_by":
-                      //           renalStatusApprovedByController.text.trim(),
-                      //       "blood_culture_date": formatDate(
-                      //           bloodCultureDateController.text.trim(),
-                      //           inputFormat: "dd-MM-yyyy",
-                      //           outputFormat: "yyyy-MM-dd")
-                      //     }
-                      //   }
-                      // };
                       _submitProcedure();
                     },
                     radius: 10,
@@ -655,6 +626,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
       isPositive = preProcedureDataLab?.results == "positive";
       isNegative = preProcedureDataLab?.results == "negative";
       isPending = preProcedureDataLab?.results == "pending";
+      otherController.text = preProcedureDataLab?.bloodThinnersOther ?? "";
       bloodCultureDateController.text =
           preProcedureDataLab?.bloodCultureDate != null
               ? formatDate(preProcedureDataLab?.bloodCultureDate ?? "",
