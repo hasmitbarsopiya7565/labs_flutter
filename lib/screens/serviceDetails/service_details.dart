@@ -112,9 +112,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Checkbox(
-                                        fillColor:
-                                            const MaterialStatePropertyAll(
-                                                AppColors.primaryColor),
                                         value: bloodThinnerList[index].value,
                                         onChanged: (value) {
                                           setState(() {
